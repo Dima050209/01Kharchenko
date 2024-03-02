@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_01Kharchenko.Views" xmlns:viewmodels="clr-namespace:_01Kharchenko.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="250" MinHeight="200" MinWidth="250">
+             d:DesignHeight="250" d:DesignWidth="250" MinHeight="250" MinWidth="250">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -13,12 +13,18 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Choose your birthday, please" Margin="10"></TextBlock>
-        <DatePicker Grid.Row="1" Grid.Column="0" Width="230" SelectedDate="{Binding Birthdate, Mode=TwoWay}" MaxWidth="300" HorizontalAlignment="Left"></DatePicker>
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Age, Mode=OneWay}" Margin="10"></TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding ChineseZodiac, Mode=OneWay}" Margin="10"></TextBlock>
-        <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding WesternZodiac, Mode=OneWay}" Margin="10"></TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Виберіть дату народження" Margin="10"></TextBlock>
+        <DatePicker Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Width="230" Margin="10,0,0,0" SelectedDate="{Binding Birthdate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxWidth="300" HorizontalAlignment="Left"></DatePicker>
+        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Age, Mode=OneWay}" Margin="10"></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding ChineseZodiac, Mode=OneWay}" Margin="10"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding WesternZodiac, Mode=OneWay}" Margin="10"></TextBlock>
+        <Button Grid.Row="5" Grid.Column="1" Content="Quit" Click="Quit_Click"></Button>
     </Grid>
 </UserControl>

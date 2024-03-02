@@ -6,7 +6,7 @@
          xmlns:views="clr-namespace:_01Kharchenko.Views"
         xmlns:local="clr-namespace:_01Kharchenko"
         mc:Ignorable="d"
-        Title="MainWindow" Height="0" Width="300" MinHeight="200" MinWidth="250">
+        Title="MainWindow" Height="250" Width="300" MinHeight="230" MinWidth="250">
     <Grid>
         <views:GoroscopeView></views:GoroscopeView>
     </Grid>
