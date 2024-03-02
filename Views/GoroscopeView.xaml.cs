@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _01Kharchenko.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace _01Kharchenko.Views
     /// </summary>
     public partial class GoroscopeView : UserControl
     {
+        private GoroscopeViewModel _viewModel;
         public GoroscopeView()
         {
             InitializeComponent();
+            DataContext = _viewModel = new GoroscopeViewModel();
         }
     }
 }

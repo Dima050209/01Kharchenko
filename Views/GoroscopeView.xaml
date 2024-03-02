@@ -16,9 +16,9 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Choose your birthday, please" Margin="10"></TextBlock>
-        <DatePicker Grid.Row="1" Grid.Column="0" Width="230" MaxWidth="300" HorizontalAlignment="Left"></DatePicker>
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Your age:" Margin="10"></TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="Your zodia sigh(chinese):" Margin="10"></TextBlock>
-        <TextBlock Grid.Row="4" Grid.Column="0" Text="Your zodiac sign(western):" Margin="10"></TextBlock>
+        <DatePicker Grid.Row="1" Grid.Column="0" Width="230" SelectedDate="{Binding Birthdate, Mode=TwoWay}" MaxWidth="300" HorizontalAlignment="Left"></DatePicker>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Age, Mode=OneWay}" Margin="10"></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding ChineseZodiac, Mode=OneWay}" Margin="10"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding WesternZodiac, Mode=OneWay}" Margin="10"></TextBlock>
     </Grid>
 </UserControl>
