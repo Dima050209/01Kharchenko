@@ -14,9 +14,10 @@ namespace _01Kharchenko.ViewModels
     {
         private Goroscope _goroscope = new Goroscope();
         private DateTime _birthdate;
-        private int _age;
+        private string _age;
         private string _chineseZodiac;
         private string _westernZoiac;
+        public event PropertyChangedEventHandler? PropertyChanged;
         public DateTime Birthdate
         {
             get
@@ -25,27 +26,35 @@ namespace _01Kharchenko.ViewModels
             }
             set
             {
-                _birthdate = value;
                 try
                 {
-                    _goroscope.checkBirthday(_birthdate);
+                    _goroscope.checkBirthday(value);
+                   
                 }
                 catch(Exception e)
                 {
-                   
+                    System.Windows.MessageBox.Show(e.Message);
+                    return;
                 }
+
+                _birthdate = value;
+
                 OnPropertyChanged(nameof(Age));
                 OnPropertyChanged(nameof(ChineseZodiac));
                 OnPropertyChanged(nameof(WesternZodiac));
             }
         }
-        public int Age
+        public string Age
         {
             get
             {
-                return _goroscope.calculateAge(_birthdate);
+                if (_goroscope.isBirthday(_birthdate.Month, _birthdate.Day))
+                {
+                    return $"Ваш вік: {_goroscope.calculateAge(_birthdate)}. З днем народження!";
+                }
+                return $"Ваш вік: {_goroscope.calculateAge(_birthdate)}";
             }
-            set
+            private set
             {
                 _age = value;
             }
@@ -54,9 +63,9 @@ namespace _01Kharchenko.ViewModels
         {
             get
             {
-                return _goroscope.calculateChineseZodiac(_birthdate);
+                return $"Китайський знак зодіака: {_goroscope.calculateChineseZodiac(_birthdate)}";
             }
-            set
+            private set
             {
                 _chineseZodiac = value;
             }
@@ -65,15 +74,13 @@ namespace _01Kharchenko.ViewModels
         {
             get
             {
-                return _goroscope.calculateWesternZodiac(_birthdate);
+                return $"Східний знак зодіака: {_goroscope.calculateWesternZodiac(_birthdate)}";
             }
-            set
+            private set
             {
                 _westernZoiac = value;
             }
         }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {

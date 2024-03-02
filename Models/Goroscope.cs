@@ -8,6 +8,10 @@ namespace _01Kharchenko.Models
 {
     class Goroscope
     {
+        public bool isBirthday(int month, int day)
+        {
+            return month == DateTime.Today.Month && day == DateTime.Today.Day;
+        }
         public string calculateChineseZodiac(DateTime birthday)
         {
             int year = birthday.Year;
