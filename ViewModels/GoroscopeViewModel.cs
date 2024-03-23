@@ -14,10 +14,6 @@ namespace _01Kharchenko.ViewModels
     class GoroscopeViewModel : INotifyPropertyChanged
     {
         private Goroscope _goroscope = new Goroscope();
-        private DateTime? _birthdate = null;
-        private string _age;
-        private string _chineseZodiac;
-        private string _westernZoiac;
         private bool _isShutDown = false;
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -30,11 +26,15 @@ namespace _01Kharchenko.ViewModels
         {
             get
             {
-                return _birthdate;
+                return _goroscope.Birthdate;
             }
             set
             {
                 if(_isShutDown)
+                {
+                    return;
+                }
+                if (value == _goroscope.Birthdate)
                 {
                     return;
                 }
@@ -44,18 +44,23 @@ namespace _01Kharchenko.ViewModels
                     {
                         Goroscopecalculator.checkBirthday((DateTime)value);
                     } 
-                    else
+                    else 
                     {
                         return;
                     }
+                    if(Goroscopecalculator.isBirthday(((DateTime)value).Month, ((DateTime)value).Day))
+                    {
+                        System.Windows.MessageBox.Show("З Днем народження!!!");
+                    }
+                    _goroscope.Birthdate = value;
                 }
                 catch(Exception e)
                 {
                     System.Windows.MessageBox.Show(e.Message);
+                    _goroscope.Birthdate = value;
                     return;
                 }
 
-                _birthdate = value;
 
                 OnPropertyChanged(nameof(Age));
                 OnPropertyChanged(nameof(ChineseZodiac));
@@ -71,49 +76,49 @@ namespace _01Kharchenko.ViewModels
         {
             get
             {
-                if (_birthdate == null)
+                if (_goroscope.Birthdate == null)
                 {
                     return "";
                 }
-                    if (Goroscopecalculator.isBirthday(((DateTime)_birthdate).Month, ((DateTime)_birthdate).Day))
+                    if (Goroscopecalculator.isBirthday(((DateTime)_goroscope.Birthdate).Month, ((DateTime)_goroscope.Birthdate).Day))
                 {
-                    return $"Ваш вік: {Goroscopecalculator.calculateAge((DateTime)_birthdate)}";
+                    return $"Ваш вік: {Goroscopecalculator.calculateAge((DateTime)_goroscope.Birthdate)}";
                 }
-                return $"Ваш вік: {Goroscopecalculator.calculateAge((DateTime)_birthdate)}";
+                return $"Ваш вік: {Goroscopecalculator.calculateAge((DateTime)_goroscope.Birthdate)}";
             }
             private set
             {
-                _age = value;
+                _goroscope.Age = value;
             }
         }
         public string ChineseZodiac
         {
             get
             {
-                if (_birthdate == null)
+                if (_goroscope.Birthdate == null)
                 {
                     return "";
                 }
-                return $"Китайський знак зодіака: {Goroscopecalculator.calculateChineseZodiac((DateTime)_birthdate)}";
+                return $"Китайський знак зодіака: {Goroscopecalculator.calculateChineseZodiac((DateTime)_goroscope.Birthdate)}";
             }
             private set
             {
-                _chineseZodiac = value;
+                _goroscope.ChineseZodiac = value;
             }
         }
         public string WesternZodiac
         {
             get
             {
-                if (_birthdate == null)
+                if (_goroscope.Birthdate == null)
                 {
                     return "";
                 }
-                return $"Східний знак зодіака: {Goroscopecalculator.calculateWesternZodiac((DateTime)_birthdate)}";
+                return $"Східний знак зодіака: {Goroscopecalculator.calculateWesternZodiac((DateTime)_goroscope.Birthdate)}";
             }
             private set
             {
-                _westernZoiac = value;
+                _goroscope.WesternZoiac = value;
             }
         }
 

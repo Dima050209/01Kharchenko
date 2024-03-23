@@ -8,12 +8,12 @@ namespace _01Kharchenko.Models
 {
     class Goroscope
     {
-        private DateTime _birthdate;
-        private int _age;
+        private DateTime? _birthdate;
+        private string _age;
         private string _chineseZodiac;
         private string _westernZoiac;
 
-        public DateTime Birthdate
+        public DateTime? Birthdate
         { 
             get
             {
@@ -24,7 +24,7 @@ namespace _01Kharchenko.Models
                 _birthdate = value;
             }
         }
-        public int Age
+        public string Age
         {
             get
             {
