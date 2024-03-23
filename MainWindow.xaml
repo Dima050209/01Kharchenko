@@ -6,9 +6,26 @@
          xmlns:views="clr-namespace:_01Kharchenko.Views"
         xmlns:local="clr-namespace:_01Kharchenko"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="300" MinHeight="230" MinWidth="250">
+        Title="MainWindow" Height="250" Width="300" MinHeight="250" MinWidth="250">
     <Grid>
-        <views:GoroscopeView></views:GoroscopeView>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Виберіть дату народження" Margin="10"></TextBlock>
+        <DatePicker Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Width="230" Margin="10,0,0,0" SelectedDate="{Binding Birthdate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxWidth="300" HorizontalAlignment="Left"></DatePicker>
+        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Age, Mode=OneWay}" Margin="10"></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding ChineseZodiac, Mode=OneWay}" Margin="10"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding WesternZodiac, Mode=OneWay}" Margin="10"></TextBlock>
     </Grid>
        
 </Window>

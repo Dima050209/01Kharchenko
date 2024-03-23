@@ -27,10 +27,9 @@ namespace _01Kharchenko.Views
             InitializeComponent();
             DataContext = _viewModel = new GoroscopeViewModel();
         }
-
-        private void Quit_Click(object sender, RoutedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
+        //public void OnShutDown()
+        //{
+        //    _viewModel.Cleanup();
+        //}
     }
 }
